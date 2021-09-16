@@ -1,0 +1,13 @@
+let PI = 3.14
+PI = 42;
+
+Quiz: 
+1. Var is function-scoped. Let is block-scoped. You can re-declare a variable using var. You can't do this with let. Var also creates properties in the window document. 
+2. Var is function-scoped and const is blocked scope. You can re-declare a variable using var. You can't with const. 
+3. The main difference is that const does not let you reassign. (although you can mutate it, like let)
+4. Hoisting in javascript allows functions to be defined before they are executed. Only declarations are hoisted—not initializations. With es6, const and let wont let undeclared variables be executed, as opposed to var. For example...
+
+var x;
+console.log(hoist)
+x = 6;
+will return "undefined", because it was hoisted. If the variable was declared using let or const, a reference error would be returned. 
