@@ -1,0 +1,51 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Italic;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 HelveticaNeue-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red53\green53\blue53;\red220\green161\blue13;}
+{\*\expandedcolortbl;;\cssrgb\c27059\c27059\c27059;\cssrgb\c89412\c68627\c3922;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\i\fs24 \cf2 \
+What is http?
+\f1\i0 \
+standard protocol for how browsers and servers communicate\
+
+\f0\i what is a URL?\
+
+\f1\i0 Universal resource locator.  Often made up of the protocol, hostname, port, resource, and query. \
+
+\f0\i What is DNS?\
+
+\f1\i0 Takes a host name, and translates it into a corresponding IP address (analogous to a phone book)
+\f2\b \
+
+\f0\i\b0 What is a query string?\
+
+\f1\i0 optional way of specifying additional information as part of url.\
+
+\f0\i What are two HTTP verbs and how are they different?\
+
+\f1\i0 Get: Requests data without side effects (doesn\'92t change server data). If there are arguments, they are typically passed along in the query string. \
+Post: requests with side effects (ie, change data on server) Post does not include arguments using the query string. Instead, it is usually done using form submissions. \
+
+\f0\i What is an HTTP request?\
+
+\f1\i0 An http request includes a method (ie get), http protocol version, resource url, and headers. 
+\f0\i \
+What is an HTTP response?\
+
+\f1\i0 An HTTP response is what the server sends back. includes protocol version, status code, and headers. 
+\f0\i \
+What is an HTTP header? Give a couple examples of request and response headers you have seen.\
+
+\f1\i0 HTTP headers let the client and the server pass additional information with an HTTP response or request. \
+Examples of headers within an HTTP request:\
+Hostnames you\'92re asking about, date your browser thinks it is, language your browser wants information in, cookies. \
+Examples of headers within an HTTP response:\
+Content type (typically text/html for web pages), date/time the server thinks it is, any cookies server wants to set, caching information. \
+
+\f0\i What are the processes that happen when you type \'93{\field{\*\fldinst{HYPERLINK "http://somesite.com/some/page.html"}}{\fldrslt \cf3 http://somesite.com/some/page.html}}\'94 into a browser?\
+
+\f1\i0 The browser looks up the ip address for the domain name via DNS. The browser sends an http request to the server. The server sends back a http request. The browser renders html, and sends requests for additional content. }

@@ -9,10 +9,127 @@
 </head>
 
 <body>
-
+    <button id="button">Click me!</button>
 </body>
 
-<script src="es2015_notes.js"></script>
-<script src="maps_and_sets_exercise.js"></script>
+<!-- <script src="es2015_notes.js"></script>
+<script src="maps_and_sets_exercise.js"></script> -->
+<script>
+    let myButton = document.getElementById("button");
+    myButton.addEventListener("click", function (e) {
+        console.log(e.target);
+        var self = this;
+        function x() {
+            console.log(this);
+            console.log(self);
+        }
+        x();
+        console.log(this);
+    })
+    // function Triangle(a, b) {
+    //     this.a = a;
+    //     this.b = b;
+    //     this.getArea = function () {
+    //         return this.a * this.b / 2;
+    //     }
+    //     this.getHypotenuse = function () {
+    //         return Math.sqrt(this.a ** 2 + this.b ** 2)
+    //     };
+    // }
+    // const t1 = new Triangle(3, 4)
+    // //now shows same thing, but as an object...
+    // {
+    //     a: 3,
+    //         b: 4,
+    //             getArea: f,
+    //                 getHypotenuse: f
+    // }
+
+
+    class Triangle {
+        constructor(a, b, c) {
+            //exists to accept data to be used in the instantiation (New Triangle)
+            //its called for us automatically upon the exection of New Triangle{
+            for (let side of [a, b, c]) {
+                if (!Number.isFinite(side) || side <= 0) {
+                    throw new Error('Sides must be positive numbers');
+                    //do this instead of returning, if you return the object will still be created and you wont be able to capture that return value 
+                }
+            }
+            this.a = a
+            this.b = b;
+            this.side3 = c;//just to show that name doesnt matter 
+        }
+        greet() {
+            console.log("helllo im a triangle")
+        }
+        display() {
+            console.log(`Triangle with sides of ${this.a} and ${this.b}, and ${this.side3}`)
+        }
+        //although this method is useless, it is referencing properties that it assumes exists on the individual instances (this.a. this.b)
+    }
+
+    // const firstTri = new Triangle(1, 4, 5);
+    // const secondTri = new Triangle()
+
+    // firstTri.display();
+
+    class Vehicle {
+        constructor(make, model, year) {
+            this.make = make;
+            this.model = model;
+            this.year = year;
+        }
+        honk() {
+            return "BEEP!"
+        }
+        toString() {
+            return `The vehicle is a ${this.make} ${this.model} from ${this.year}.`
+        }
+    }
+
+    class Car extends Vehicle {
+        constructor(make, model, year) {
+            super(make, model, year);
+            this.numWheels = 4;
+        }
+    }
+
+    class Motorcycle extends Vehicle {
+        constructor(make, model, year) {
+            super(make, model, year);
+            this.numWheels = 2;
+        }
+        revEngine() {
+            return "VROOOOM!"
+        }
+    }
+    class Garage {
+        constructor(capacity) {
+            this.vehicles = [];
+            this.capacity = capacity;
+        }
+        add(newVe) {
+            if (!(newVe instanceof Vehicle)) {
+                return ("You can only add a vehicle")
+            }
+            if (this.vehicles.length < this.capacity) {
+                this.vehicles.push(newVe);
+                return `new vehicle added!`
+            }
+            else {
+                throw new Error("There is no more room!")
+            }
+        }
+    }
+
+
+
+
+
+    const myCar = new Car("Honda", "Monster Truck", 1999)
+
+
+</script>
 
 </html>

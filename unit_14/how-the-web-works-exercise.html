@@ -1,0 +1,27 @@
+What is http?
+standard protocol for how browsers and servers communicate
+what is a URL?
+Universal resource locator. Often made up of the protocol, hostname, port, resource, and query.
+What is DNS?
+Takes a host name, and translates it into a corresponding IP address (analogous to a phone book)
+What is a query string?
+optional way of specifying additional information as part of url.
+What are two HTTP verbs and how are they different?
+Get: Requests data without side effects (doesn’t change server data). If there are arguments, they are typically passed
+along in the query string.
+Post: requests with side effects (ie, change data on server) Post does not include arguments using the query string.
+Instead, it is usually done using form submissions.
+What is an HTTP request?
+An http request includes a method (ie get), http protocol version, resource url, and headers.
+What is an HTTP response?
+An HTTP response is what the server sends back. includes protocol version, status code, and headers.
+What is an HTTP header? Give a couple examples of request and response headers you have seen.
+HTTP headers let the client and the server pass additional information with an HTTP response or request.
+Examples of headers within an HTTP request:
+Hostnames you’re asking about, date your browser thinks it is, language your browser wants information in, cookies.
+Examples of headers within an HTTP response:
+Content type (typically text/html for web pages), date/time the server thinks it is, any cookies server wants to set,
+caching information.
+What are the processes that happen when you type “http://somesite.com/some/page.html” into a browser?
+The browser looks up the ip address for the domain name via DNS. The browser sends an http request to the server. The
+server sends back a http request. The browser renders html, and sends requests for additional content.

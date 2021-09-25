@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+}
+
+
+.style{
+ position: relative;
+ width: 300px;
+ margin-top: 1%;
+ margin-left: 25%;
+}
+div.style> img {
+    box-sizing: content-box;
+    width: 300px;
+    position: relative;
+    background-size: contain;
+    z-index: 1;
+}
+.toptextdiv {
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    top: 10px;
+    text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:white
+}
+.bottomtextdiv {
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:white;
+}

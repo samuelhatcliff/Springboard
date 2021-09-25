@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="button">Click me!</button>
+</body>
+<script>
+    class Vehicle {
+        constructor(make, model, year) {
+            this.make = make;
+            this.model = model;
+            this.year = year;
+        }
+        honk() {
+            return "BEEP!"
+        }
+        toString() {
+            return `The vehicle is a ${this.make} ${this.model} from ${this.year}.`
+        }
+    }
+
+    class Car extends Vehicle {
+        constructor(make, model, year) {
+            super(make, model, year);
+            this.numWheels = 4;
+        }
+    }
+
+    class Motorcycle extends Vehicle {
+        constructor(make, model, year) {
+            super(make, model, year);
+            this.numWheels = 2;
+        }
+        revEngine() {
+            return "VROOOOM!"
+        }
+    }
+    class Garage {
+        constructor(capacity) {
+            this.vehicles = [];
+            this.capacity = capacity;
+        }
+        add(newVe) {
+            if (!(newVe instanceof Vehicle)) {
+                return ("You can only add a vehicle")
+            }
+            if (this.vehicles.length < this.capacity) {
+                this.vehicles.push(newVe);
+                return `new vehicle added!`
+            }
+            else {
+                throw new Error("There is no more room!")
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const cat = {
+            name: "Blue",
+            breed: 'Scottish fold',
+            dance: function (typeofdance) {
+                console.log(`this is ${this}`)
+                console.log(`Meow, I am ${this.name} and I like to ${typeofdance}`)
+            }
+        }
+        const bluesDance = cat.dance;
+function whatIsThis() {
+    console.log('this =', this);
+
+}
+
+const myObj = {
+    func: whatIsThis
+}
+
+blueDance.call(cat, 'jitterbug');
+//this works 
+
+//however, there is a better option that allows us to not have to use call everytime
+//it binds it permanently. its called bind!
+const bDance = blue.dance;
+const boundDance = bDance.bind(blue);
+
+const rocketDance = blue.dance.bind(rocket);
+
+const dog = {
+    name: 'Tyson',
+    breed: 'Mini Aussie',
+    dance: rocketDance
+}
+
+//"this" may be problematic when executed through callbacks. 
+//ie 
+document.querySelector('#btn').addEventListener('click', blue.greet)
+//so we can change that to
+document.querySelector('#btn').addEventListener('click', blue.greet.bind.blue())
+//we can also use bind to bind arguements
+const blueDisco = blue.dance.bind(blue, 'disco')
+//argument for dance in blueDisco will always be disco
+
+    </script>
+
+In a sense, js doesn't really have functions. Every function is a method called on an object
+But technically, when you call a function on what looks to be nothing (not pertaining to any particular object)
+its called on the global object.
+The global object in the browser is called the Window Object.
+In NodeJs that's global (where some node utilities are)
+alert('hey there') === window.altert('hey there')
+
+So what does this have to do with "this"?
+-As a shorthand rule, "this" will be set to whatever you have to the left of your dot
+the value of this changes depending on how a function is executed.(the value of this isnt
+decided until it is executed. the value can change depending on how its executed, as you can see with
+the example of cat.dance() vs bluesDance())
+</body>
+
+</html>
