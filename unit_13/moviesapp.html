@@ -14,9 +14,6 @@
         <input type="text" name="rating" placeholder="Enter rating of movie">
         <input type="submit"></input>
         <ul></ul>
-        <!-- <button id="submit">Submit!</button> -->
-
-
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
             $('ul').on('click', ".btn_remove", function () {
@@ -32,19 +29,9 @@
                     text: 'Remove',
                     class: 'btn_remove'
                 });
-                // console.log(button);
-                // button.appendTo(wholeDiv);
-                console.log(wholeDiv);
-
                 $('ul').append(`<li>${wholeDiv}</li>`);
                 $('ul').append($btn);
-
             })
-
-            // $('ul').on('click', 'button', function () {
-            //     $(this).remove();
-            // })
-
         </script>
 </body>
 
