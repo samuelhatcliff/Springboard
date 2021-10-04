@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" name="name" placeholder="Enter name of movie">
+        <input type="text" name="rating" placeholder="Enter rating of movie">
+        <input type="submit"></input>
+        <ul></ul>
+        <!-- <button id="submit">Submit!</button> -->
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+            $('ul').on('click', ".btn_remove", function () {
+                $(this).prev().remove();
+                $(this).remove()
+            })
+            $('#form').submit(function () {
+                event.preventDefault();
+                let nameVal = $('#form').find('input[name="name"]').val();
+                let ratingVal = $('#form').find('input[name="rating"]').val();
+                let wholeDiv = `Name of movie: ${nameVal} Rating: ${ratingVal}`;
+                let $btn = $('<button/>', {
+                    text: 'Remove',
+                    class: 'btn_remove'
+                });
+                // console.log(button);
+                // button.appendTo(wholeDiv);
+                console.log(wholeDiv);
+
+                $('ul').append(`<li>${wholeDiv}</li>`);
+                $('ul').append($btn);
+
+            })
+
+            // $('ul').on('click', 'button', function () {
+            //     $(this).remove();
+            // })
+
+        </script>
+</body>
+
+</html>
