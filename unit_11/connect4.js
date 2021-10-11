@@ -61,7 +61,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
+  //rewrite with last index, map, flter
   let xCol = [];
   let correctRow;
   for (let i = 0; i < HEIGHT; i++) {
@@ -69,10 +69,7 @@ function findSpotForCol(x) {
     xCol.push(row[x])
   }
   //last of xCol will be bottom row
-  // if (xCol[0] !== null) {
-  //   //if the x column is already filled, return null
-  //   return null;
-  // }
+
 
   if (xCol[xCol.length - 1] === null) {
     //if the bottom row is empy, the correct y coordinate is the bottom row

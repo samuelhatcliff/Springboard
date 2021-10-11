@@ -1,0 +1,22 @@
+
+body {
+  text-align: center;
+}
+
+table {
+width:100%;
+color: white;
+}
+
+#j-table tr{
+  width: 50px;
+  height: 80px;
+  border: solid 1px #666;
+}
+
+#j-table td {
+  width: 50px;
+  height: 80px;
+  border: solid 1px #666;
+background-color: #115ff4;
+}
