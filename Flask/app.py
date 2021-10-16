@@ -53,3 +53,7 @@ def save_comment():
     <h1>Saved your comment as {comment}</h1>
     """
 
+@app.route('/r/<subreddit>')
+def show_subreddit(subreddit):
+    return f"<h1> {subreddit} This is a subbreddit </h1>
+
