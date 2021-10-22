@@ -74,15 +74,16 @@ class StoryList {
    */
 
   //  async addStory( /* user, newStory */) {
-  async addStory(formData) {
+  async addStory(user, formData) {
     // UNIMPLEMENTED: complete this function!
-    // const userToken = user.loginToken;
-    console.log('Before post requeat')
-
+    const userToken = user.loginToken;
+    console.log("usertoken", userToken);
+    console.log('Before post request')
+    console.log('form data', formData)
     const res = await axios({
       url: `${BASE_URL}/stories`,
       method: "POST",
-      data: { story: { formData } },
+      data: { userToken, story: { title, author, url } },
     });
     console.log(res.data.formData);
     const story = new Story(res.data.formData);
@@ -152,7 +153,6 @@ class User {
       response.data.token
     );
   }
-
   /** Login in user with API, make User instance & return it.
 
    * - username: an existing user's username

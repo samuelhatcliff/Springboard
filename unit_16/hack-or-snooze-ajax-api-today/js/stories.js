@@ -55,20 +55,16 @@ function putStoriesOnPage() {
 
 
 $("#submit").on('click', async function () {
-  // let author = document.querySelector('input[name = "authorname"]').value
-  // let url = document.querySelector('input[name = "storyurl"]').value
-  // let title = document.querySelector('input[name = "storytitle"]').value
-  // console.log(author, url, title);
+
   let formData = {
     author: document.querySelector('input[name = "authorname"]').value,
     url: document.querySelector('input[name = "storyurl"]').value,
     title: document.querySelector('input[name = "storytitle"]').value,
-    // username: currentUser.username
+    username: currentUser.username
   }
   console.log(formData);
-  let newStory = await storyList.addStory(formData)
-  // const UIstoryList = document.querySelector("#all-stories-list")
-  // UIstoryList.append(newStory);
+  let newStory = await storyList.addStory(currentUser, formData)
+
   console.log(newStory);
 
 })
