@@ -19,7 +19,7 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   for (let i = 0; i < HEIGHT; i++) {
     let rowArr = [];
-    for (let i = 0; i < WIDTH; i++) {
+    for (let j = 0; j < WIDTH; j++) {
       rowArr.push(null);
     }
     board.push(rowArr);
@@ -28,23 +28,23 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
+  // gets "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.getElementById('board')
-  // TODO: add comment for this code
+  //Creates top row of table and assigns it the ID of "column=top"
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
-  //Creates top row of table and assigns it the ID of "column=top"
-  top.addEventListener("click", handleClick);
   //Adds event listener to listen for clicks so the player can drop their piece over the appropriate column
+  top.addEventListener("click", handleClick);
+  //creates  each cell of for top row where their ID is set to their position on X axis 
   for (let x = 0; x < WIDTH; x++) {
     let headCell = document.createElement("td");
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
-  //assigns ID's for each cell space on 'top row' (above the board)
-  htmlBoard.append(top);
   //appends top row to HTML Board
-  // TODO: add comment for this code
+  htmlBoard.append(top);
+  // Creates html elements for each cell in board using nested array
+  // Attaches ID of exactly where they are located on x-y axis
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
@@ -54,34 +54,37 @@ function makeHtmlBoard() {
     }
     htmlBoard.append(row);
   }
-  //creates ID's for each space in the board that could potentially be occupied by a player's piece
-  //does this using a nested array to assign x and y coordinates, attaching both to give each a unique ID
 }
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  //rewrite with last index, map, flter
+  //the argument of x will always be the event target id of what was clicked in 
+  //the top row (see lines 34-45). X will also always be the correct x axis value for the new piece
+  //at this point we just need to find the correct y value
+  //first we need to identify the correct column that the piece is being dropped into 
   let xCol = [];
   let correctRow;
-  for (let i = 0; i < HEIGHT; i++) {
+  //this for loop goes through each row of board array. For each value of the array (which is the equivalent of one row array)
+  //the value at the x axis is added
+  for (let i = 0; i < HEIGHT; i) {
     let row = board[i]
     xCol.push(row[x])
   }
   //last of xCol will be bottom row
 
-
   if (xCol[xCol.length - 1] === null) {
-    //if the bottom row is empy, the correct y coordinate is the bottom row
+    //if the bottom row is empty, the correct y coordinate is the bottom row
     correctRow = xCol.length - 1;
+    //before returning, we need to modify our data structure (board array) with the new data
     board[correctRow].splice(x, 1, currPlayer);
     return correctRow;
   }
-  else {
-    //find the last space before a cell is occupied
-    //does this by finding number of null cells in column. 
-    //correct row would be number of null cells - 1 (to account for indexing)
-
+  //find the last space before a cell is occupied
+  //does this by finding number of null cells in column. 
+  //correct row would be number of null cells - 1 (to account for indexing)
+  else if (xCol[0] === null) {
+    //checks if the top row is occupied. If it is, the returned value is null, as there is no room for piece (see line 147)
     let totalNulls = 0
     for (let k = 0; k < xCol.length; k++) {
       if (xCol[k] !== null) {
@@ -91,33 +94,37 @@ function findSpotForCol(x) {
           }
         }
         correctRow = totalNulls - 1;
+        //before returning, we need to modify our data structure (board array) with the new data
         board[correctRow].splice(x, 1, currPlayer);
         return correctRow;
       }
     }
+  }
+  else {
+    return null
   }
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
-  let inTable = document.createElement("div");
+  // Creates a div for piece and appends that to correct position on table
+  let piece = document.createElement("div");
   if (currPlayer === 1) {
-    inTable.setAttribute("class", "p1piece")
+    //use classlist
+    piece.setAttribute("class", "p1piece")
   }
   else if (currPlayer === 2) {
-    inTable.setAttribute("class", "p2piece")
+    piece.setAttribute("class", "p2piece")
   }
+  //gets correct element and appends 
   let findId = document.getElementById(`${y}-${x}`)
-  findId.append(inTable);
-  console.log("now in table")
-
+  findId.append(piece);
 }
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
+  // pop up alert message
   alert(msg);
 }
 
@@ -138,13 +145,11 @@ function handleClick(evt) {
   let x = +evt.target.id;
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
-  console.log(y);
   if (y === null) {
     return;
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
   placeInTable(y, x);
 
   // check for win
@@ -152,16 +157,12 @@ function handleClick(evt) {
     endGame(`Player ${currPlayer} won!`);
   }
 
-  // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  // check if all cells in board are filled; if so call, call endGame
   if (checkForTie()) {
     endGame("It was a Tie!");
   }
-  //REWRITE USING ARRAY SOME METHOD {
-  //Finish
-
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+
   if (currPlayer === 1) {
     currPlayer = 2;
   }
@@ -189,7 +190,6 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
