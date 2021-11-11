@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="form" placeholder="enter planet" id="planetform">
+        <button>Search</button>
+    </form>
+    <ul>
+
+    </ul>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script>
+        async function searchPlanets() {
+            const planets = await axios.get("https://swapi.dev/api/planets");
+            const names = planets.data.results.map(val => val.name)
+
+            console.log(names);
+        }
+        searchPlanets();
+
+
+
+//add js classes
+//
+
+    </script>
+</body>
+
+</html>
