@@ -1,16 +1,37 @@
-from flask import Flask, request, render_template
-from random import randint, choice, sample
-# from flask_debugtoolbar import DebugToolBarExtension
-app = Flask(__name__)
+from flask import Flask, request, render_template, redirect
+from random import choice, sample
 
-# app.config['SECRET_KEY'] = "topsecret"
-# debug = DebugToolBarExtension(app)
+from flask_debugtoolbar import DebugToolbarExtension
+
+
+COMPLIMENTS = ["cool", "clever", "tenacious", "awesome", "Pythonic"]
+
+MOVIES = ['amadeus', 'chicken run', 'dances with wolves']
+
+
+
+
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = "oh-so-secret"
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+debug = DebugToolbarExtension(app)
 
 @app.route('/form')
 def show_form():
     return render_template("form.html")
 
-COMPLIMENTS= ["cool", "clever", "tenacious", "awesome", "Pythonic"]
+@app.route('/movies')
+def show_all_movies():
+    '''show list of all movies in fake db'''
+    return render_template('movies.html', movies=MOVIES)
+
+@app.route('/movies/new', methods=["POST"])
+def add_movie():
+    title = request.form['title']
+    MOVIES.append(title)
+    return render_template('movies.html', movies=MOVIES)
+
 
 @app.route('/form2')
 def show_form2():
@@ -22,6 +43,11 @@ def get_greeting_2():
     wants_compliments = request.args.get("wants_compliments")
     nice_things = sample(COMPLIMENTS, 3)
     return render_template("greet_2.html", username=username, wants_compliments=wants_compliments, compliments=nice_things)
+
+@app.route('/old-home-page')
+def redirect_to_home():
+    '''redirects to new home page'''
+    return redirect("/")
 
 @app.route('/')
 def home_page():

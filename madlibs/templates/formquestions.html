@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mad Libs Questions</title>
+</head>
+
+<body>
+    <h1>Customize your Madlibs!</h1>
+    <form action="/story">
+        {% for prompt in prompts%}
+        <br>
+        {{prompt}}: <input type="text" name={{prompt}}>
+        <br>
+        {% endfor %}
+        <br>
+        <button>Submit</button>
+
+    </form>
+    </body>
+
+</html>

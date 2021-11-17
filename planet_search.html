@@ -13,23 +13,40 @@
         <input type="form" placeholder="enter planet" id="planetform">
         <button>Search</button>
     </form>
-    <ul>
+    <ul id="planet-list">
 
     </ul>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script>
         async function searchPlanets() {
             const planets = await axios.get("https://swapi.dev/api/planets");
-            const names = planets.data.results.map(val => val.name)
-
-            console.log(names);
+            const planetsArr = planets.data.results.map(plan => new Planet(plan.name, plan.rotation_period))
+            // const names = planets.data.results.map(val => val.name)
+            // const rotationPeriods = planets.data.results.map(val => val.rotation_period)
+            PlanetList.draw(planetsArr)
         }
+
         searchPlanets();
 
-
+        class Planet {
+            constructor(name, rotationPeriod) {
+                this.name = name
+                this.rotationPeriod = rotationPeriod
+            }
+        }
+        class PlanetList {
+            static draw(planets) {
+                const ul = document.getElementById('planet-list')
+                for (let plan of planets) {
+                    const li = document.createElement('li')
+                    li.innerHTML = `${plan.name} has a ${plan.rotationPeriod} `
+                    ul.appendChild(li);
+                }
+            }
+        }
 
 //add js classes
-//
+// 
 
     </script>
 </body>
