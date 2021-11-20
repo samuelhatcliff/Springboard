@@ -6,14 +6,14 @@ survey = satisfaction_survey
 
 responses = []
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "oh-so-secret"
+app.config['SECRET_KEY'] = "top_secret"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
 @app.route('/')
 def home_page():
     survey = satisfaction_survey
-    return render_template('base.html', survey = survey, responses=responses)
+    return render_template('start.html', survey = survey, responses=responses)
 
 
 
