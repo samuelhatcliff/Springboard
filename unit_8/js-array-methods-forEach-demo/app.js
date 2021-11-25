@@ -1,4 +1,4 @@
-const colors = [ 'teal', 'cyan', 'peach', 'purple' ];
+const colors = ['teal', 'cyan', 'peach', 'purple'];
 
 function yell(val, i) {
 	const caps = val.toUpperCase();
@@ -7,9 +7,9 @@ function yell(val, i) {
 
 colors.forEach(yell);
 
-const prices = [ 30.99, 19.99, 2.5, 99.0 ];
+const prices = [30.99, 19.99, 2.5, 99.0];
 let total1 = 0;
-prices.forEach(function(price) {
+prices.forEach(function (price) {
 	total1 += price;
 });
 console.log(total1);
@@ -27,10 +27,40 @@ function forEach(arr, callback) {
 	}
 }
 
-forEach(colors, function(color, i) {
+forEach(colors, function (color, i) {
 	console.log(color.toUpperCase(), 'at index of:', i);
 });
 
-colors.forEach(function(color, i) {
+colors.forEach(function (color, i) {
 	console.log(color.toUpperCase(), 'at index of:', i);
 });
+
+function extractValue(objArr, key) {
+	return objArr.reduce(function (acc, next) {
+		acc.push(next[key]);
+		return acc;
+	}, [])
+}
+
+function vowelCount(str) {
+	const newStr = str.toLowerCase().split("")
+	const vowels = 'aeiou'
+	return newStr.reduce(function (acc, next) {
+		if (vowels.indexOf(next) !== -1) {
+			if (acc[next]) {
+				acc[next] += 1
+			}
+			else {
+				acc[next] = 1
+			}
+		}
+		return acc
+	}, {})
+}
+
+function addKeyAndValue(objArr, key, value) {
+	return objArr.reduce(function (acc, next, index) {
+		acc[index][key] = value;
+		return acc
+	}, objArr)
+}
