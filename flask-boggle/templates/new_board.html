@@ -8,6 +8,12 @@
 
 </head>
 <body>
+
+
+
+
+
+<button id="start">Start Game</button>
 <div id="boggle">
     <table class="board">
         <tbody>
@@ -19,18 +25,30 @@
             </tr>
             {% endfor %}
         </tbody>
+
+    <p>
+        High Score: <b id="high-score">{{highest_score}}</b>
+        Number of Attempts: <b id="attempt">{{attempt}}</b>
+        Current Score: <b id="score">0</b>
+        Seconds Left: <b id="timer"></b>
+    </p>
     </table>
         <form action="/word_check" class="add-word">
         <input type="text" placeholder="Enter a guess" name="word" class="word">
         <button id="button">Submit</button>
         </form>
+    <p id="words-found">
+    <b>Words Found:</b>
+    </p>
 </div>
 
 <script src="http://unpkg.com/jquery"></script>
 <script src="/static/boggle11.js"></script>
 <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
 <script>
-let game = new BoggleGame("boggle");
+$("#boggle").hide()
+let game = new BoggleGame("boggle")
+
 </script>
 
 </body>
