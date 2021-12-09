@@ -1,6 +1,6 @@
 from app import app
 from unittest import TestCase
-from flask import session
+from flask import session, json
 from boggle import Boggle
 
 
@@ -13,24 +13,16 @@ class FlaskTests(TestCase):
             
             self.assertEqual(res.status_code,200)
             self.assertIn('<button id="start">Start Game</button>', html)
-            
-    #  def test_word_check(self):
-    #         with app.test_client() as client:
-    #         res = client.get('/word_check')
-    #         html = res.get_data(as_text=True) 
-            
-    #         self.assertEqual(res.status_code,200)
-    #         self.assertIn('<button id="start">Start Game</button>', html)
-    
-    def test_score_check(self):
+
+    def test_high_score_check(self):
         with app.test_client() as client:
-            # with client.session_transaction() as change_session:
-            #     change_session['num_times'] = 0
-            res = client.post('/score_check', data= {'scgeore': 10})
+            res = client.post('/score_check', json = {'score': 10})
             html = res.get_data(as_text=True) 
-            print(html)
-            self.assertEqual(res.status_code,200)
             
+            self.assertEqual(res.status_code,200)
+            res2 = client.post('/score_check', json = {'score': 5})
+            data = json.loads(res2.get_data(as_text=True))
+            self.assertEqual(data['highScore'], 10)
     
 
             
