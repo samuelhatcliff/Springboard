@@ -18,7 +18,9 @@ class Tests(TestCase):
             
             res=client.get('/check')
             data=client.get('/check', query_string={'from': 'USD', 'to':'USD', 'amount':5})
-            
-            print(data.get_data)            
+            #How do I get correct syntax for query string and retrieve "amount"?
+            html = res.get_data(as_text=True)
+            self.assertIn(5, html)
+              
 
     
